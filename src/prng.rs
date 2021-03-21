@@ -56,6 +56,33 @@ mod test_parser {
     }
 
     #[test]
+    fn test_uniform() {
+        let mut rng = PRNG::new();
+        for _ in 0..10 {
+            let x = rng.uniform(0.0, 1.0);
+            assert!(0.0 <= x && x <= 1.0);
+        }
+        for _ in 0..10 {
+            let x = rng.uniform(-1.0, 0.5);
+            assert!(-1.0 <= x && x <= 0.5);
+        }
+    }
+
+    #[test]
+    fn test_gaussian() {
+        let mut rng = PRNG::new();
+        {
+            let mut sum = 0.0;
+            let n = 10;
+            for _ in 0..n {
+                sum += rng.gaussian(120.0, 1.0);
+            }
+            let mu = sum / n as f64;
+            assert!(100.0 < mu && mu < 140.0);
+        }
+    }
+
+    #[test]
     fn test_exponential() {
         let mut rng = PRNG::new();
         for _ in 0..10 {
