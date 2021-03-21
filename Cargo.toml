@@ -4,7 +4,13 @@ version = "0.1.0"
 authors = ["cympfh <cympfh@gmail.com>"]
 edition = "2018"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+license-file = "LICENSE"
+description = "CLI as a RNG"
+repository = "https://github.com/cympfh/randcli"
+readme = "README.md"
+
+categories = ["command-line-utilities"]
+keywords = ["cli", "rand"]
 
 [dependencies]
 structopt = "0.3"
@@ -15,3 +21,6 @@ rand_chacha = "0.3.0"
 [[bin]]
 name = "rand"
 path = "src/bin/rand.rs"
+
+[badges]
+github = { repository = "cympfh/randcli", workflow = "Rust" }
