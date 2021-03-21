@@ -28,6 +28,16 @@ impl PRNG {
         -x.ln() / lambda
     }
 
+    pub fn binom(&mut self, n: usize, p: f64) -> f64 {
+        let mut r: usize = 0;
+        for _ in 0..n {
+            if self.uniform(0.0, 1.0) < p {
+                r += 1
+            }
+        }
+        r as f64
+    }
+
     pub fn setseed(&mut self, state: u64) {
         self.rng = ChaCha8Rng::seed_from_u64(state);
     }
@@ -88,6 +98,15 @@ mod test_parser {
         for _ in 0..10 {
             assert!(rng.exponential(0.5) > 0.0);
             assert!(rng.exponential(1.0) > 0.0);
+        }
+    }
+
+    #[test]
+    fn test_binom() {
+        let mut rng = PRNG::new();
+        for _ in 0..10 {
+            let m = rng.binom(5, 0.3);
+            assert!(0.0 <= m && m <= 5.0);
         }
     }
 }

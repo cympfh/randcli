@@ -29,6 +29,12 @@ pub fn eval(expr: &Expr) -> f64 {
                 let args = fillarg(&t.1, &mut vec![1.0]);
                 ret = rng.exponential(args[0]);
             }
+            "binom" => {
+                assert_eq!(t.1.len(), 2);
+                let n = t.1[0] as usize;
+                let p = t.1[1];
+                ret = rng.binom(n, p);
+            }
             _ => {
                 panic!(format!("Unknown function: {}", t.0));
             }

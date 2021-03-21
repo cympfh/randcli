@@ -29,6 +29,7 @@ $ rand 'seed(42) | gauss(0, 100) | int'
 | gauss   | mean (optional), variance (optional) | Gaussian Distribution     | `gauss()` `gauss(0, 1)` |
 | uniform | min (optional), max (optional)       | Uniform from [min, max)   | `uniform(1, 2)`         |
 | exp     | lambda (optional)                    | Exponential Distribution  | `exp(0.5)`              |
+| binom   | n, p (required)                      | Binomial Distribution     | `binom(10, 0.5)`        |
 
 ## Install
 
