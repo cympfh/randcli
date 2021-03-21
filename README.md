@@ -5,8 +5,8 @@ CLI as a Pseudo Random Number Generator
 ## How?
 
 ```bash
-$ rand 'gauss()'
-0.7164763224859116  # ~ Gaussian(mu=0, vr=1)
+$ rand 'gauss'
+0.7164763224859116  # ~ Gaussian(mu=0, vr=1) without explicit args
 
 $ rand 'gauss(1, 100)'
 3.6845312036504216  # ~ Gaussian(mu=1, vr=100)
