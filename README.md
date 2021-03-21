@@ -30,3 +30,8 @@ $ rand 'seed(42) | gauss(0, 100) | int'
 | uniform | min (optional), max (optional)       | Uniform from [min, max)   | `uniform(1, 2)`         |
 | exp     | lambda (optional)                    | Exponential Distribution  | `exp(0.5)`              |
 
+## Install
+
+```bash
+cargo install randcli
+```
