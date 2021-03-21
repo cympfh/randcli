@@ -22,9 +22,11 @@ $ rand 'gauss() | int'
 
 | Name    | Args                                 | Effect                    | Example                 |
 |---------|--------------------------------------|---------------------------|-------------------------|
-| seed    | number (required)                    | Set Random Seed           | `seed(42)`              |
+| seed    | number (unsigned int, required)      | Set Random Seed           | `seed(42)`              |
 | int     | number (required)                    | Truncate a float into int | `int`                   |
+| floor   | same to int                          |                           | `floor`                 |
+| round   | trancate into nearst int             |                           | `round`                 |
 | gauss   | mean (optional), variance (optional) | Gaussian Distribution     | `gauss()` `gauss(0, 1)` |
-| uniform | min (optional), max (optional)       | Uniform[min, max]         | `uniform(1, 2)`         |
-| exp     | lambda (required)                    | Exponential Distribution  | `exp(0.5)`              |
+| uniform | min (optional), max (optional)       | Uniform from [min, max)   | `uniform(1, 2)`         |
+| exp     | lambda (optional)                    | Exponential Distribution  | `exp(0.5)`              |
 
