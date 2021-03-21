@@ -32,11 +32,11 @@ fn term(input: &str) -> IResult<&str, Term> {
     ))(input)
 }
 
-pub fn spaces(input: &str) -> IResult<&str, &str> {
+fn spaces(input: &str) -> IResult<&str, &str> {
     take_while(|c: char| c.is_whitespace())(input)
 }
 
-pub fn identifier(input: &str) -> IResult<&str, String> {
+fn identifier(input: &str) -> IResult<&str, String> {
     fn head(c: char) -> bool {
         c.is_alphabetic() || c == '_' || c == '#' || c == '@'
     }
@@ -57,13 +57,13 @@ fn decimal(input: &str) -> IResult<&str, &str> {
     recognize(many1(terminated(one_of("0123456789"), many0(char('_')))))(input)
 }
 
-pub fn number(input: &str) -> IResult<&str, f64> {
+fn number(input: &str) -> IResult<&str, f64> {
     let (input, _) = spaces(input)?;
     let (input, x) = map(
         alt((
-            recognize(tuple((opt(char('-')), decimal))),
             recognize(tuple((opt(char('-')), char('.'), decimal))),
             recognize(tuple((opt(char('-')), decimal, char('.'), decimal))),
+            recognize(tuple((opt(char('-')), decimal))),
         )),
         |num_str: &str| {
             let num: String = num_str.chars().filter(|&c| c != '_').collect();
@@ -107,5 +107,40 @@ mod test_parser {
                 Term("int".to_string(), vec![])
             ]
         );
+        assert_expr!(
+            "exponential(.5) | int",
+            [
+                Term("exponential".to_string(), vec![0.5]),
+                Term("int".to_string(), vec![])
+            ]
+        );
+        assert_expr!(
+            "exponential(0.5) | int",
+            [
+                Term("exponential".to_string(), vec![0.5]),
+                Term("int".to_string(), vec![])
+            ]
+        );
+    }
+}
+
+#[cfg(test)]
+mod test_number {
+    use crate::parser::*;
+
+    macro_rules! assert_number {
+        ($input:expr, $expected:expr) => {
+            assert_eq!(number($input), Ok(("", $expected)));
+        };
+    }
+
+    #[test]
+    fn it_works() {
+        assert_number!(" 123 ", 123.0);
+        assert_number!(" 12.5 ", 12.5);
+        assert_number!("0.1", 0.1);
+        assert_number!("1.0", 1.0);
+        assert_number!("0.5", 0.5);
+        assert_number!(".5", 0.5);
     }
 }
