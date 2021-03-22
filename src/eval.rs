@@ -35,6 +35,11 @@ pub fn eval(expr: &Expr) -> f64 {
                 let p = t.1[1];
                 ret = rng.binom(n, p);
             }
+            "bernoulli" => {
+                let args = fillarg(&t.1, &mut vec![0.5]);
+                let p = args[0];
+                ret = rng.binom(1, p);
+            }
             _ => {
                 panic!(format!("Unknown function: {}", t.0));
             }
