@@ -1,6 +1,9 @@
 extern crate structopt;
 use structopt::StructOpt;
 
+extern crate anyhow;
+use anyhow::Result;
+
 use randcli::eval::eval;
 use randcli::parser::parse;
 
@@ -12,12 +15,13 @@ struct Opt {
     debug: bool,
 }
 
-fn main() {
+fn main() -> Result<()> {
     let opt = Opt::from_args();
     let expr = parse(opt.expr);
     if opt.debug {
-        eprintln!("{:?}", &expr);
+        eprintln!(">>> expr = {:?}", &expr);
     }
-    let result = eval(&expr);
+    let result = eval(&expr)?;
     println!("{}", result);
+    Ok(())
 }
