@@ -11,7 +11,7 @@ macro_rules! assert_arity {
         }
     };
     (<= $arity:expr, $term:expr) => {
-        if $arity > $term.1.len() {
+        if $arity < $term.1.len() {
             bail!("Arity Error: {} required <= {} args", $term.0, $arity);
         }
     };
