@@ -4,7 +4,7 @@ version = "0.1.5"
 authors = ["cympfh <cympfh@gmail.com>"]
 edition = "2018"
 
-license-file = "LICENSE"
+license = "MIT"
 description = "CLI as a RNG"
 repository = "https://github.com/cympfh/randcli"
 readme = "README.md"
@@ -22,6 +22,3 @@ rand_chacha = "0.3.0"
 [[bin]]
 name = "rand"
 path = "src/bin/rand.rs"
-
-[badges]
-github = { repository = "cympfh/randcli", workflow = "Rust" }

@@ -1,3 +1,10 @@
+
+<p align="center">
+    <a href="https://crates.io/crates/randcli"><img src="https://img.shields.io/crates/v/randcli.svg" alt="crates.io" /></a>
+    <a href="https://github.com/cympfh/randcli/actions"><img src="https://github.com/cympfh/randcli/workflows/Rust/badge.svg" /></a>
+    <a href="https://github.com/cympfh/randcli/blob/main/LICENSE"><img src="https://img.shields.io/crates/l/randcli.svg" /></a>
+</p>
+
 # randcli
 
 CLI as a Pseudo Random Number Generator
