@@ -6,7 +6,8 @@ CLI as a Pseudo Random Number Generator
 
 ```bash
 $ rand 'gauss'
-0.7164763224859116  # ~ Gaussian(mu=0, vr=1) without explicit args
+0.7164763224859116  # ~ Gaussian(mu=0, vr=1)
+# 'gauss' is same to 'gauss()' or 'gauss(0, 1)'
 
 $ rand 'gauss(1, 100)'
 3.6845312036504216  # ~ Gaussian(mu=1, vr=100)
@@ -20,16 +21,16 @@ $ rand 'seed(42) | gauss(0, 100) | int'
 
 ## Functions
 
-| Name    | Args                                 | Effect                    | Example                 |
-|---------|--------------------------------------|---------------------------|-------------------------|
-| seed    | number (unsigned int, required)      | Set Random Seed           | `seed(42)`              |
-| int     | number (required)                    | Truncate a float into int | `int`                   |
-| floor   |                                      | same to int               | `floor`                 |
-| round   |                                      | trancate into nearst int  | `round`                 |
-| gauss   | mean (optional), variance (optional) | Gaussian Distribution     | `gauss()` `gauss(0, 1)` |
-| uniform | min (optional), max (optional)       | Uniform from [min, max)   | `uniform(1, 2)`         |
-| exp     | lambda (optional)                    | Exponential Distribution  | `exp(0.5)`              |
-| binom   | n, p (required)                      | Binomial Distribution     | `binom(10, 0.5)`        |
+| Category     | Name    | Effect                                 | Type                             | Default Args | Example                 |
+|--------------|---------|----------------------------------------|----------------------------------|--------------|-------------------------|
+| Seed         | seed    | Set Random Seed                        | unsigned int -> 0                |              | `seed(42)`              |
+| Truncate     | int     | Truncate a float into int              | -> int                           |              | `int`                   |
+| ..           | floor   | same to `int`                          | -> int                           |              | `floor`                 |
+| ..           | round   | trancate into nearst int               | -> int                           |              | `round`                 |
+| Distribution | gauss   | Gaussian Distribution (mean, variance) | (number, number) -> number       | (0, 1)       | `gauss()` `gauss(0, 1)` |
+| ..           | uniform | Uniform Distribution of [min, max)     | (number, number) -> number       | (0, 1)       | `uniform(1, 2)`         |
+| ..           | exp     | Exponential Distribution (lambda)      | number -> number                 | 1            | `exp(0.5)`              |
+| ..           | binom   | Binomial Distribution (n, p)           | (unsigned int, number) -> number |              | `binom(10, 0.5)`        |
 
 ## Install
 
